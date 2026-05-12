@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>POSE DETECTION</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css//w3.css'%}">
+<link rel="stylesheet" href="{% static 'css/family.css'%}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
+<style>
+body {
+    font-family: "Lato", sans-serif;
+    background-image: url("{%static 'images/t.webp'%}") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color:#f1f1f1;
+    
+}
+#nav
+{
+  animation: nav 10s;
+}
+@keyframes nav{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1f1f1; /* Example background color */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for visual effect */
+  text-align: center;
+  padding: 8px;
+}
+.mySlides {display: none}
+.w3-justify
+{
+    background-color: black;
+    color:white;
+}
+.w3-wide
+{
+    background-color: black;
+    color: wheat;
+}
+</style>
+</head>
+<body class="w3-opacity-min" id="mymove">
+
+<!-- Navbar -->
+<div class="w3-top w3-center w3-animate-opacity">
+  <div class="w3-bar w3-black w3-card w3-center" id="nav">
+    <!-- <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i>POSE DETECTION</a> -->
+    <img src="{% static 'images/po.png'%}" class="w3-circle w3-bar-item w3-theme-large w3-black w3-padding-large w3-hide-small"  style="height: 60px; width: 80px;" alt="Avatar">
+    <a href="{% url 'UserHome'%}" class="w3-bar-item w3-button w3-theme-large w3-large w3-hover-red  w3-padding-large w3-hide-small" style="text-transform: uppercase; color: red;">{{user}}  </a>
+    
+    <a href="{% url 'UserHome'%}" class="w3-bar-item w3-button w3-padding-large w3-hover-red">HOME</a>
+    <a href="{% url 'Datasetview'%}" class="w3-bar-item w3-button w3-padding-large w3-hover-red">DATASET</a>
+    <a href="{% url 'training'%}" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-red">TRANING</a>
+    <a href="{% url 'predict'%}" class="w3-bar-item w3-button  w3-hover-red w3-padding-large w3-hide-small">RATE</a>
+    <a href="{% url 'base'%}" class="w3-bar-item w3-button  w3-hover-red w3-padding-large w3-hide-small">LOGOUT</a> 
+    
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  
+ 
+  <div class="mySlides w3-display-container w3-center">
+    <img src="{% static 'images/pose1.png'%}"style="width:50%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+        
+    </div>
+  </div>
+  
+{% block contents %}
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    <h2 class="w3-wide w3-animate-opacity w3-round-xxlarge">Rating 
+      of Mobile Apps</h2>
+    
+        <marquee behavior="alternate" direction="left">
+        <h1 >Welcome <span style="color: red; text-transform: uppercase;"><b>{{user}} </b></span></h1>
+      </marquee>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="w3-padding-8 w3-margin-bottom w3-center w3-opacity ">
+       <p class="w3-medium w3-red" >@ Designed by <a href="#" target="_blank">DATA POINT</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

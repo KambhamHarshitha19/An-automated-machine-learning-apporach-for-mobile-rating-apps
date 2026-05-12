@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>POSE DETECTION - APP RATING</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/family.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .left {
+            flex: 1;
+            background: url("{% static 'images/t.webp' %}") no-repeat center center;
+            background-size: cover;
+        }
+        .right {
+            flex: 1;
+            background-color: white;
+            padding: 50px;
+            overflow-y: auto;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: black;
+            z-index: 1000;
+            padding: 10px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar w3-top w3-black w3-center w3-card">
+    <img src="{% static 'images/po.png' %}" class="w3-circle" style="height: 50px; width: 70px;" alt="Logo">
+    <a href="{% url 'UserHome' %}" class="w3-bar-item w3-button w3-hover-red">HOME</a>
+    <a href="{% url 'Datasetview' %}" class="w3-bar-item w3-button w3-hover-red">DATASET</a>
+    <a href="{% url 'training' %}" class="w3-bar-item w3-button w3-hover-red">TRAINING</a>
+    <a href="{% url 'predict' %}" class="w3-bar-item w3-button w3-hover-red">RATE</a>
+    <a href="{% url 'base' %}" class="w3-bar-item w3-button w3-hover-red">LOGOUT</a>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Left Side (Image) -->
+    <div class="left"></div>
+    
+    <!-- Right Side (Content) -->
+    <div class="right">
+        <h2 class="w3-center">Rating of Mobile Apps</h2>
+        <marquee behavior="alternate"><h3>Welcome <span style="color: red;">{{ user }}</span></h3></marquee>
+
+        <!-- App Rating Form -->
+        <div class="w3-center">
+            {% if prediction is not None %}
+                <h3>APP RATING IS: {{ prediction }}</h3>
+            {% endif %}
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+            <form action="{% url 'predict' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="w3-table">
+                    <tr><td>App:</td><td><input type="text" name="app" required></td></tr>
+                    <tr><td>Category:</td><td><input type="text" name="category" required></td></tr>
+                    <tr><td>Reviews:</td><td><input type="number" name="reviews" required></td></tr>
+                    <tr><td>Installs:</td><td><input type="number" name="installs" required></td></tr>
+                    <tr><td>Size:</td><td><input type="text" name="Size" required></td></tr>
+                    <tr>
+                        <td colspan="2" class="w3-center">
+                            <input type="submit" value="Predict">
+                            <input type="reset" value="Reset">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

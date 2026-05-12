@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Dataset View</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="{% static 'css/w3.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+
+<style>
+body {
+    font-family: "Lato", sans-serif;
+    margin: 0;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left Image */
+.left-side {
+    flex: 1;
+    background: url("{% static 'images/t.webp' %}") center/cover no-repeat;
+}
+
+/* Right Content */
+.right-side {
+    flex: 1;
+    background: #020617;
+    color: white;
+    padding: 90px 25px 25px;
+    overflow-y: auto;
+}
+
+/* Card */
+.dataset-card {
+    background: #0f172a;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+/* Pandas Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th {
+    background: #dc2626;
+    color: white;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}
+
+td {
+    padding: 8px;
+    border-bottom: 1px solid #334155;
+    text-align: center;
+}
+
+tr:hover {
+    background: #1e293b;
+}
+
+/* Navbar */
+.w3-bar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <img src="{% static 'images/po.png' %}" class="w3-bar-item" style="height:55px">
+    <a href="{% url 'UserHome' %}" class="w3-bar-item w3-button">{{ user }}</a>
+    <a href="{% url 'Datasetview' %}" class="w3-bar-item w3-button w3-red">DATASET</a>
+    <a href="{% url 'training' %}" class="w3-bar-item w3-button">TRAINING</a>
+    <a href="{% url 'predict' %}" class="w3-bar-item w3-button">RATE</a>
+    <a href="{% url 'base' %}" class="w3-bar-item w3-button">LOGOUT</a>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+
+    <div class="left-side"></div>
+
+    <div class="right-side">
+        <h2 class="w3-wide">📊 Google Play Store Dataset (Top 100)</h2>
+
+        <div class="dataset-card">
+            {{ data|safe }}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

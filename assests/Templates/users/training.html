@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>POSE DETECTION</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/family.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        .left-section {
+            flex: 1;
+            background-image: url("{% static 'images/t.webp' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 8px;
+        }
+
+        h1 {
+            font: bold;
+            color: red;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 50px;
+            text-shadow: 1px 1px 2px black, 0 0 1em red, 0 0 0.2em red;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: black;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left Section -->
+    <div class="left-section"></div>
+    
+    <!-- Right Section -->
+    <div class="right-section">
+        <!-- Navbar -->
+        <div class="w3-top w3-center w3-animate-opacity">
+            <div class="w3-bar w3-black w3-card w3-center">
+                <img src="{% static 'images/po.png' %}" class="w3-circle w3-bar-item" style="height: 60px; width: 80px;" alt="Avatar">
+                <a href="{% url 'UserHome' %}" class="w3-bar-item w3-button w3-large w3-hover-red" style="text-transform: uppercase; color: red;">{{ user }}</a>
+                <a href="{% url 'UserHome' %}" class="w3-bar-item w3-button w3-hover-red">HOME</a>
+                <a href="{% url 'Datasetview' %}" class="w3-bar-item w3-button w3-hover-red">DATASET</a>
+                <a href="{% url 'training' %}" class="w3-bar-item w3-button w3-hover-red">TRAINING</a>
+                <a href="{% url 'predict' %}" class="w3-bar-item w3-button w3-hover-red">RATE</a>
+                <a href="{% url 'base' %}" class="w3-bar-item w3-button w3-hover-red">LOGOUT</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+            <h2 class="w3-wide w3-animate-opacity w3-round-xxlarge">Rating of Mobile Apps</h2>
+            
+            <table class="w3-table-all">
+                <tr><td>MSE</td><td>{{ mse }}</td></tr>
+                <tr><td>MAE</td><td>{{ mae }}</td></tr>
+            </table>
+        </div>
+    </div>
+
+   
+
+</body>
+</html>

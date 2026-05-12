@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* Full-page layout */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Flex container to split screen */
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Left side with background image */
+        .left {
+    flex: 1;
+    background: url("{% static 'images/a.jpg' %}") no-repeat center center/cover;
+}
+
+        /* Right side with content */
+        .right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            padding: 20px;
+        }
+
+        /* Navbar Styling */
+        .w3-bar {
+            background: black;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            top: 0;
+        }
+
+        .w3-bar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .w3-bar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Login Form */
+        .login-box {
+            width: 350px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background: white;
+        }
+
+        .login-box h2 {
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-box input[type="submit"], 
+        .login-box input[type="reset"] {
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            padding: 10px;
+        }
+
+        .login-box input[type="submit"]:hover,
+        .login-box input[type="reset"]:hover {
+            background: #333;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-box {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="w3-bar w3-center">
+        <a href="{% url 'base' %}">HOME</a>
+        <a href="{% url 'Userlogin' %}">USER</a>
+        <a href="{% url 'AdminLogin' %}">ADMIN</a>
+        <a href="{% url 'Userregister' %}">REGISTER</a>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Left Side (Background Image) -->
+        <div class="left"></div>
+
+        <!-- Right Side (Login Form) -->
+        <div class="right">
+            <div class="login-box">
+                <h2>USER LOGIN</h2>
+                <br><br>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <br><br>
+                    <input type="submit" value="Sign In">
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="reset" value="Reset">
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

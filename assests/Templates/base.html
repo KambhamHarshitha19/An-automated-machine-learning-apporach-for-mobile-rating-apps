@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>AppRating</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+  <link rel="stylesheet" href="{% static 'css/family.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font_awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/kri.css' %}">
+
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(to right, #333, #000);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .navbar span {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: red;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* Navbar Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+      }
+
+      .nav-links {
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-links a {
+        display: block;
+      }
+    }
+
+    /* Split Container */
+    .container {
+      display: flex;
+      height: 100vh;
+      margin-top: 60px;
+    }
+
+    /* Left side with background image */
+    .left-side {
+      flex: 1;
+      background-image: url("{% static 'images/t.webp' %}");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Right side with white background */
+    .right-side {
+      flex: 1;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      text-align: justify;
+    }
+
+    .content-container {
+      max-width: 500px;
+    }
+
+    .content-container h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .content-container p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 8px;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left-side {
+        height: 50vh;
+      }
+
+      .right-side {
+        height: 50vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <span>AppRating</span>
+    <div class="nav-links">
+      <a href="{% url 'base' %}">HOME</a>
+      <a href="{% url 'Userlogin' %}">USER</a>
+      <a href="{% url 'AdminLogin' %}">ADMIN</a>
+      <a href="{% url 'Userregister' %}">REGISTER</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Left Side (Background Image) -->
+    <div class="left-side"></div>
+
+    <!-- Right Side (Content with White Background) -->
+    <div class="right-side">
+      <div class="content-container">
+        <h2>RATING OF MOBILE APP</h2>
+        <p>
+          Ratings of Customers' decisions are greatly influenced by what they read or see online. Reviews by customers 
+          demonstrate their knowledge about quality and experience. In the Google Play store, applications' success can 
+          be significantly influenced by fake numerical ratings. A positive review may be strongly associated with a high 
+          star rating. Nevertheless, the text format of reviews typically differs from the information provided by user 
+          star ratings. This study presents an effective machine learning approach for forecasting app ratings on the 
+          Google Play Store.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>REGISTERED USERS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            background-image: url("{% static 'images/t.webp' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+        }
+
+        .nav-buttons {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .nav-buttons a {
+            margin: 5px;
+            padding: 10px 15px;
+            background: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .nav-buttons a:hover {
+            background: red;
+        }
+
+        h2 {
+            background-color: black;
+            color: wheat;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        table {
+            width: 90%;
+            max-width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+        }
+
+        td {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .activate-btn, .deactivate-btn, .delete-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .activate-btn {
+            background-color: green;
+            color: white;
+        }
+
+        .deactivate-btn {
+            background-color: black;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .activate-btn:hover, .deactivate-btn:hover, .delete-btn:hover {
+            opacity: 0.8;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 8px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+        <h2>Rating of Mobile Apps</h2>
+        <h1>Welcome to Admin Home</h1>
+        <a href="{% url 'AdminHome' %}">HOME</a>
+        <a href="{% url 'viewusers' %}">USER LIST</a>
+        <a href="{% url 'base' %}">LOGOUT</a>
+    </div>
+
+    <h2>REGISTERED USERS</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone No</th>
+            <th>Locality</th>
+            <th>State</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{ i.Name }}</td>
+            <td>{{ i.Username }}</td>
+            <td>{{ i.Email }}</td>
+            <td>{{ i.Phone_No }}</td>
+            <td>{{ i.Locality }}</td>
+            <td>{{ i.State }}</td>
+            <td>{{ i.Address }}</td>
+            <td>{{ i.status }}</td>
+            <td>
+                {% if i.status == 'waiting' %}
+                    <form method="POST" action="{% url 'Activateusers' i.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="activate-btn">Activate</button>
+                    </form>
+                {% else %}
+                    <form method="POST" action="{% url 'Deleteusers' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ i.id }}">
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                {% endif %}
+            </td>
+            
+           
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+</body>
+</html>
